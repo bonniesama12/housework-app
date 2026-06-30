@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FAFBFC;
+  --bg-card: #FFFFFF;
+  --border: #E8ECF0;
+  --text-primary: #1A1D21;
+  --text-secondary: #6B7280;
+  --accent-green: #10B981;
+  --accent-red: #EF4444;
+  --accent-orange: #F59E0B;
+  --accent-blue: #3B82F6;
+  --accent-purple: #8B5CF6;
+  --holiday-bg: #FEF3C7;
+  --holiday-text: #92400E;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  min-height: 100vh;
+}
+
+/* 打卡动画 */
+@keyframes check-pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.check-pop {
+  animation: check-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 数字跳动 */
+@keyframes number-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.number-bounce {
+  animation: number-bounce 0.2s ease-out;
+}
+
+/* 页面滑入 */
+@keyframes slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in {
+  animation: slide-in 0.25s ease-out;
+}
+
+/* Shake */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-out;
+}
+
+/* 日历格子 */
+.day-cell {
+  transition: all 0.15s ease;
+}
+
+.day-cell:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.day-cell.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 进度条 */
+.progress-bar {
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 按钮涟漪 */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: inherit;
+  transform: scale(0);
+  transition: transform 0.3s;
+}
+.btn-ripple:active::after {
+  transform: scale(1.5);
+  transition: transform 0s;
+}
